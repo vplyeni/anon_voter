@@ -30,8 +30,64 @@
 					{
 						"indexed": true,
 						"internalType": "uint16",
+						"name": "proposalId",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "voted",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "result",
+						"type": "uint32"
+					}
+				],
+				"name": "ProposalEnded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint16",
+						"name": "proposalId",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
+					}
+				],
+				"name": "ProposalStarted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint16",
 						"name": "voteId",
 						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
 					},
 					{
 						"indexed": false,
@@ -57,6 +113,12 @@
 						"internalType": "uint16",
 						"name": "voteId",
 						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
 					}
 				],
 				"name": "VotingStarted",
@@ -76,14 +138,26 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					}
+				],
 				"name": "closeProposal",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					}
+				],
 				"name": "closeVoting",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -92,12 +166,88 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint16",
+						"name": "skip",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint16",
+						"name": "take",
+						"type": "uint16"
+					}
+				],
+				"name": "getProposals",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint16",
+								"name": "id",
+								"type": "uint16"
+							},
+							{
+								"internalType": "string",
+								"name": "topic",
+								"type": "string"
+							},
+							{
+								"internalType": "uint32",
+								"name": "voted",
+								"type": "uint32"
+							},
+							{
+								"internalType": "uint32",
+								"name": "result",
+								"type": "uint32"
+							},
+							{
+								"internalType": "address",
+								"name": "proposer",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "blockNumberStarted",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "blockNumberWillNotEndBefore",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "blockNumberClosed",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum VoterContract.VotingType",
+								"name": "proposalType",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct VoterContract.Proposal[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint8",
-						"name": "limit",
+						"name": "skip",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "take",
 						"type": "uint8"
 					}
 				],
-				"name": "getLastVotings",
+				"name": "getVotings",
 				"outputs": [
 					{
 						"components": [
@@ -184,35 +334,17 @@
 			{
 				"inputs": [
 					{
+						"internalType": "enum VoterContract.VotingType",
+						"name": "_proposalType",
+						"type": "uint8"
+					},
+					{
 						"internalType": "string",
 						"name": "_topic",
 						"type": "string"
 					}
 				],
 				"name": "openProposal",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "enum VoterContract.VotingType",
-						"name": "_votingType",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_votingDurationBasedBlockNumber",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "_topic",
-						"type": "string"
-					}
-				],
-				"name": "openVoting",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -225,6 +357,78 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "proposalId",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"name": "proposals",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
+					},
+					{
+						"internalType": "uint32",
+						"name": "voted",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "result",
+						"type": "uint32"
+					},
+					{
+						"internalType": "address",
+						"name": "proposer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockNumberStarted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockNumberWillNotEndBefore",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockNumberClosed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum VoterContract.VotingType",
+						"name": "proposalType",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -279,12 +483,17 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					},
+					{
 						"internalType": "uint8",
 						"name": "vote",
 						"type": "uint8"
 					}
 				],
-				"name": "useVotePowerONE_TEN",
+				"name": "useVotePowerOne2Ten",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -292,18 +501,46 @@
 			{
 				"inputs": [
 					{
-						"internalType": "enum VoterContract.NoYes",
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint8",
 						"name": "vote",
 						"type": "uint8"
 					}
 				],
-				"name": "useVotePowerProposal",
+				"name": "useVotePowerProposalOne2Ten",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					},
+					{
+						"internalType": "enum VoterContract.NoYes",
+						"name": "vote",
+						"type": "uint8"
+					}
+				],
+				"name": "useVotePowerProposalYesNo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "id",
+						"type": "uint16"
+					},
 					{
 						"internalType": "enum VoterContract.NoYes",
 						"name": "vote",
@@ -455,11 +692,11 @@
 			]
 		},
 		"contracts/Vote/VoterContract.sol": {
-			"keccak256": "0x59da8b678fe6eb95ff8b206be99fee4356075c12f52abe220495f51c69e7e875",
+			"keccak256": "0x988948290caa7159266e265a9bfd2dcc2691b64373458403b0ffd8938778b8bd",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://d5614bc374b66d0f4c540f9c283fd7a8280e27ea4375aa5245a49789980a48ed",
-				"dweb:/ipfs/QmcSXjjWyq6KRs3kFJVxjHftJPu4Dq3PH1K2RG5gtGwuCz"
+				"bzz-raw://1864343741ee8a395b977df7e9bf2c05efa55ff9c53e0062fca5b0bade48ca76",
+				"dweb:/ipfs/QmWkTmex6zpnzaHYGDE7bd8WcLnXvSjY7FAzAUejdUD7Yt"
 			]
 		}
 	},

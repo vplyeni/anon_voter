@@ -109,7 +109,7 @@
 						"type": "address"
 					}
 				],
-				"name": "setContractAddress",
+				"name": "setVoterContractAddress",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -182,19 +182,19 @@
 			]
 		},
 		"contracts/Vote/KeyHolderContract.sol": {
-			"keccak256": "0xe425ce94f0b3bce07c8a46bd003ddf69faea07ca2960f82419554712b0afb7cc",
+			"keccak256": "0xedd62af50cb4d38f5b894c72cefde08862eecd5cfcc0a7ac0f632bb28e8ddfc1",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://794a3d1f0f7deeffa95baf5a365ecdb9ee93af8eb7f709df5eb184d3a193f253",
-				"dweb:/ipfs/QmcnQYrZUAbpU2xnR32L1V4F4zKXqvVCCdXeo3TrbbERBE"
+				"bzz-raw://3a3fcd88083738bbb3b9767a2624f032698e9db8b6cfe114fa4b7bed6dbaec08",
+				"dweb:/ipfs/QmXe5tQT1W2FVo9YPawf8gJVqSp2zyH9ggkn5VndcwVjQj"
 			]
 		},
 		"contracts/Vote/VoterContract.sol": {
-			"keccak256": "0x59da8b678fe6eb95ff8b206be99fee4356075c12f52abe220495f51c69e7e875",
+			"keccak256": "0x5ec27c0213c4969ae2f7414d18e5d58411b3fd1b6a59b35ddb8c6ee61e77565b",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://d5614bc374b66d0f4c540f9c283fd7a8280e27ea4375aa5245a49789980a48ed",
-				"dweb:/ipfs/QmcSXjjWyq6KRs3kFJVxjHftJPu4Dq3PH1K2RG5gtGwuCz"
+				"bzz-raw://1ef9395d598918a5cca98ef94cc3aadc360231f618c019fb05c029b48c58a5dd",
+				"dweb:/ipfs/QmTkdRWi6CnaRdbKmw7PQGu1x7m4Kuxagq8nX7JrxTMtPj"
 			]
 		}
 	},

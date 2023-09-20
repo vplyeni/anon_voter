@@ -21,7 +21,7 @@ contract KeyHolderContract is Ownable{
     }
 
     constructor() {
-        VOTERS[0x5dF267e301e83743b863520B4F56d55EDfB370F1] = true;
+        /*VOTERS[0x5dF267e301e83743b863520B4F56d55EDfB370F1] = true;
         VOTERS[0x99a508C22E8F88Ec895B02B9ab2037912251987d] = true;
         VOTERS[0xd6C8655e0F74750221C4F3BE7CE1577376f2856d] = true;
         VOTERS[0x775Efa69acD6Cc632508B60ea80cf3772B5Cae94] = true;
@@ -148,11 +148,12 @@ contract KeyHolderContract is Ownable{
         VOTERS[0x50CF2177E470BEb7D43492CCd0724F8Dd7C02c71] = true;
         VOTERS[0xf474b05fceEd1198446c0dfe642b6cA11C9b8f41] = true;
         VOTERS[0x239Df2D69F3A5DdDfd98fa70AC069FF86606f68C] = true;
-        VOTERS[0xE6E864b753B1C1D3DBD50f5A43f6933F642A626f] = true;
+        VOTERS[0xE6E864b753B1C1D3DBD50f5A43f6933F642A626f] = true;*/
     }
 
+    //For the ease of development
     function hile() public onlyOwner {
-        require(false);
+        //require(false);
         VoterContract voterContract = VoterContract(contractAddress);
         voterContract.giveVotingPower(0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c);
         voterContract.giveVotingPower(0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C);
@@ -167,7 +168,7 @@ contract KeyHolderContract is Ownable{
         VOTERS[0x617F2E2fD72FD9D5503197092aC168c91465E7f2] = false;
     }
 
-    function setContractAddress(address _contractAddress) public onlyOwner {
+    function setVoterContractAddress(address _contractAddress) public onlyOwner {
         contractAddress = _contractAddress;
     }
 
