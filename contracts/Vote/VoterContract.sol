@@ -120,8 +120,6 @@ contract VoterContract is Ownable{
         keyHolder = adr;
     }
 
-    //
-
     function giveVotingPower(address voterAddress) external onlyKeyHolder noZeroAddress(voterAddress) {
         require(!__VOTERS__[voterAddress],"Given address is already a voter.");
         totalVoterCount = totalVoterCount + 1;
@@ -246,6 +244,8 @@ contract VoterContract is Ownable{
     }
 
     function getVotings(uint8 skip, uint8 take) external view returns(Voting[] memory){
+        require(take>0);
+
         Voting[] memory _votings = new Voting[](take);
         uint16 vi = voteId;
 
@@ -267,6 +267,8 @@ contract VoterContract is Ownable{
     }
 
     function getProposals(uint16 skip, uint16 take) external view returns(Proposal[] memory){
+        require(take>0);
+        
         Proposal[] memory _proposals = new Proposal[](take);
         uint16 pi = proposalId;
 
@@ -287,9 +289,24 @@ contract VoterContract is Ownable{
         return _proposals;
     }
 
-    function whatDidIVote() external view returns(uint8){
-        return votePower[voteId][msg.sender];
+    function whatDidIVote(uint16[] memory idList) external view returns(uint8[] memory){
+        uint8[] memory voted = new uint8[](idList.length);
+
+        for(uint8 i = 0; i < idList.length; i++){
+            voted[i]=votePower[idList[i]][msg.sender];
+        }
+        return voted;
     }
+
+    function whatDidIVoteForProposals(uint16[] memory idList) external view returns(uint8[] memory){
+        uint8[] memory voted = new uint8[](idList.length);
+
+        for(uint8 i = 0; i < idList.length; i++){
+            voted[i]=proposalVotePower[idList[i]][msg.sender];
+        }
+        return voted;
+    }
+
     function amIVOTER() external view returns(bool){
         return __VOTERS__[msg.sender];
     }
